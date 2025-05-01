@@ -121,3 +121,15 @@ body {
   margin-top: 1px;
   margin-left: 1px;
 }
+
+#dropdown-basic {
+  border: none;
+}
+
+#dropdown-basic:hover {
+  background-color: transparent;
+}
+
+.dropdown-item:active {
+  background-color: lightgrey !important;
+}

@@ -1,12 +1,13 @@
 'use client';
 
 import React from "react";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function SigninBody({children}) {
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className="row p-3">
@@ -34,15 +35,15 @@ export default function SigninBody({children}) {
       <div className="row">
         <div className="col-lg-2 mt-4">
           <div className="nav-main">
-            <div className="nav-sub p-2 {% if request.path == '/youtube' %}active{% endif %}" onClick={() => router.push("/")}>
+            <div className={`nav-sub p-2 ${pathname === '/' ? 'active' : ''}`} onClick={() => router.push("/")}>
               <i className="bi bi-house text-white"></i>
               <span>홈</span>
             </div>
-            <div className="nav-sub p-2 {% if request.path == '/youtube/shorts' %}active{% endif %}" onClick={() => router.push("/shorts")}>
+            <div className={`nav-sub p-2 ${pathname === '/shorts' ? 'active' : ''}`} onClick={() => router.push("/shorts")}>
               <i className="bi bi-film text-white"></i>
               <span>Shorts</span>
             </div>
-            <div className="nav-sub p-2 {% if request.path == '/youtube/subscriptions' %}active{% endif %}" onClick={() => router.push("/subscriptions")}>
+            <div className={`nav-sub p-2 ${pathname === '/subscriptions' ? 'active' : ''}`} onClick={() => router.push("/subscriptions")}>
               <i className="bi bi-bookmark text-white"></i>
               <span>구독</span>
             </div>

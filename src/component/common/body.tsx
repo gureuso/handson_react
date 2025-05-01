@@ -1,12 +1,14 @@
 'use client';
 
 import React from "react";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import {Dropdown} from "react-bootstrap";
 
 export default function Body({children}) {
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className="row p-3">
@@ -26,30 +28,31 @@ export default function Body({children}) {
         </div>
         <div>
           <div className="input-group header-login-profile">
-            <div className="dropdown">
-              <a className="dropdown-toggle text-white text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/img/profile.png" width="40" alt="" style={{borderRadius: '50%'}} />
-              </a>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+                <img src="/img/profile.png" width="40" alt="" style={{ borderRadius: '50%' }} />
+              </Dropdown.Toggle>
 
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a className="dropdown-item" href="/youtube/logout/">로그아웃</a></li>
-              </ul>
-            </div>
+              <Dropdown.Menu>
+                <Dropdown.Item href="http://localhost:8888/youtube/api/signout">로그아웃</Dropdown.Item>
+                <Dropdown.Item href="/auth">유저인증</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-lg-2 mt-4">
           <div className="nav-main">
-            <div className="nav-sub p-2 {% if request.path == '/youtube' %}active{% endif %}" onClick={() => router.push("/")}>
+            <div className={`nav-sub p-2 ${pathname === '/' ? 'active' : ''}`} onClick={() => router.push("/")}>
               <i className="bi bi-house text-white"></i>
               <span>홈</span>
             </div>
-            <div className="nav-sub p-2 {% if request.path == '/youtube/shorts' %}active{% endif %}" onClick={() => router.push("/shorts")}>
+            <div className={`nav-sub p-2 ${pathname === '/shorts' ? 'active' : ''}`} onClick={() => router.push("/shorts")}>
               <i className="bi bi-film text-white"></i>
               <span>Shorts</span>
             </div>
-            <div className="nav-sub p-2 {% if request.path == '/youtube/subscriptions' %}active{% endif %}" onClick={() => router.push("/subscriptions")}>
+            <div className={`nav-sub p-2 ${pathname === '/subscriptions' ? 'active' : ''}`} onClick={() => router.push("/subscriptions")}>
               <i className="bi bi-bookmark text-white"></i>
               <span>구독</span>
             </div>
