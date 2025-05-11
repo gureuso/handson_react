@@ -6,13 +6,8 @@ import Image from "next/image";
 
 export default function Subscription() {
   const get_redirect_uri = (provider: string) => {
-    const protocol = location.protocol;
-    // const protocol = 'https:';
-    const port = protocol === 'https:' ? ':443' : ':8888';
-    const hostname = window.location.hostname;
-    // const hostname = 'youtube-api.devmaker.kr';
-
-    return protocol + '//' + hostname + port + '/youtube/api/callback/' + provider;
+    // return 'http://localhost:8888/youtube/api/callback/' + provider;
+    return 'https://youtube-api.devmaker.kr/youtube/api/callback/' + provider;
   }
 
   return (
