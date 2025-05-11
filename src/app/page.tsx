@@ -7,15 +7,15 @@ import Image from "next/image";
 export default function Home() {
   const [tag, setTag] = useState("전체");
   const videoList = [
-    { title: "파이썬으로 프로그래밍 시작하기", tag: "파이썬", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://cdn-prod.hanbit.co.kr/thumbnails/C2662526625_cover.jpg" },
-    { title: "혼자 공부하는 파이썬", tag: "파이썬", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://cdn-prod.hanbit.co.kr/thumbnails/C5104434431_cover.jpg" },
-    { title: "쿠버네티스로 시작하기", tag: "인프라", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://cdn-prod.hanbit.co.kr/thumbnails/C3865785505_cover.jpg" },
+    { title: "파이썬으로 프로그래밍 시작하기", tag: "파이썬", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://cdn-prod.hanbit.co.kr/thumbnails/C2662526625_cover.jpg" },
+    { title: "혼자 공부하는 파이썬", tag: "파이썬", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://cdn-prod.hanbit.co.kr/thumbnails/C5104434431_cover.jpg" },
+    { title: "쿠버네티스로 시작하기", tag: "인프라", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://cdn-prod.hanbit.co.kr/thumbnails/C3865785505_cover.jpg" },
   ];
   const shortsList = [
-    { title: "혼자 만들면서 공부하는 파이썬", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5580711889_l.jpg" },
-    { title: "조코딩의 AI 비트코인 자동 매매 시스템 만들기", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5063161940_l.jpg" },
-    { title: "소문난 명강의 김길성의 네트워크 딥다이브", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B9674813480_l.jpg" },
-    { title: "요즘 교사를 위한 AI 수업 활용 가이드 with 2022 개정 교육과정", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5865274723_l.jpg" },
+    { title: "혼자 만들면서 공부하는 파이썬", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://www.hanbit.co.kr/data/books/B5580711889_l.jpg" },
+    { title: "조코딩의 AI 비트코인 자동 매매 시스템 만들기", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://www.hanbit.co.kr/data/books/B5063161940_l.jpg" },
+    { title: "소문난 명강의 김길성의 네트워크 딥다이브", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://www.hanbit.co.kr/data/books/B9674813480_l.jpg" },
+    { title: "요즘 교사를 위한 AI 수업 활용 가이드 with 2022 개정 교육과정", src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://www.hanbit.co.kr/data/books/B5865274723_l.jpg" },
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function Home() {
             <div key={idx+1000} className="col-lg-3 col-sm-4" style={{cursor: "pointer"}}>
               <VideoMain
                 width="100%"
-                height="70%"
+                height="85%"
                 key={idx}
                 src={video.src}
                 poster={video.poster}
