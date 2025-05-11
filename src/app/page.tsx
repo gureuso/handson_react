@@ -31,7 +31,7 @@ export default function Home() {
             (video.tag === tag || tag === "전체") ? <div key={idx+100} className="col-lg-4 col-sm-6" style={{cursor: "pointer"}}>
               <VideoMain
                 width="100%"
-                height="80%"
+                height={null}
                 key={idx}
                 src={video.src}
                 poster={video.poster}
