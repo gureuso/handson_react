@@ -14,8 +14,8 @@ export default function Home() {
   const shortsList = [
     { title: "혼자 만들면서 공부하는 파이썬", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5580711889_l.jpg" },
     { title: "조코딩의 AI 비트코인 자동 매매 시스템 만들기", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5063161940_l.jpg" },
-    { title: "챗GPT 일타강사의 직장인 업무 만렙 공략집", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B3218030348_l.jpg" },
-    { title: "조코딩의 AI 비트코인 자동 매매 시스템 만들기", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5493589109_l.jpg" },
+    { title: "소문난 명강의 김길성의 네트워크 딥다이브", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B9674813480_l.jpg" },
+    { title: "요즘 교사를 위한 AI 수업 활용 가이드 with 2022 개정 교육과정", src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", poster: "https://www.hanbit.co.kr/data/books/B5865274723_l.jpg" },
   ];
 
   return (
@@ -53,13 +53,13 @@ export default function Home() {
       </div>
 
       <div className="shorts-main">
-        <Image style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="90" height="35"/>
+        <Image style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="110" height="35"/>
         <div className="row">
           {shortsList.map((video, idx) => (
             <div key={idx+1000} className="col-lg-3 col-sm-4" style={{cursor: "pointer"}}>
               <VideoMain
                 width="100%"
-                height="80%"
+                height="70%"
                 key={idx}
                 src={video.src}
                 poster={video.poster}

@@ -19,7 +19,7 @@ export default function Body({children}: IProps) {
     <div className="row p-3">
       <div className="col-lg-12 d-flex justify-content-between">
         <div className="header-logo" onClick={() => router.push('/')}>
-          <Image src="/img/youtube_icon.png" alt="" width="120"/>
+          <Image src="/img/youtube_icon.png" alt="" width="110" height="35"/>
         </div>
         <div>
           <div className="input-group header-search">
@@ -35,11 +35,12 @@ export default function Body({children}: IProps) {
           <div className="input-group header-login-profile">
             <Dropdown>
               <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                <Image src="/img/profile.png" width="40" alt="" style={{ borderRadius: '50%' }} />
+                <Image src="/img/profile.png" height="40" width="40" alt="" style={{ borderRadius: '50%' }} />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="https://youtube-api.devmaker.kr/youtube/api/signout">로그아웃</Dropdown.Item>
+                {/*<Dropdown.Item href="https://youtube-api.devmaker.kr/youtube/api/signout">로그아웃</Dropdown.Item>*/}
+                <Dropdown.Item href="http://localhost:8888/youtube/api/signout">로그아웃</Dropdown.Item>
                 <Dropdown.Item href="/auth">유저인증</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

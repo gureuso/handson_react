@@ -6,11 +6,11 @@ import Image from "next/image";
 
 export default function Subscription() {
   const get_redirect_uri = (provider: string) => {
-    // const protocol = location.protocol;
-    const protocol = 'https:';
+    const protocol = location.protocol;
+    // const protocol = 'https:';
     const port = protocol === 'https:' ? ':443' : ':8888';
-    // const hostname = window.location.hostname;
-    const hostname = 'youtube-api.devmaker.kr';
+    const hostname = window.location.hostname;
+    // const hostname = 'youtube-api.devmaker.kr';
 
     return protocol + '//' + hostname + port + '/youtube/api/callback/' + provider;
   }
@@ -28,7 +28,7 @@ export default function Subscription() {
             'redirect_uri=' + get_redirect_uri('google') + '&' +
             'client_id=' + GOOGLE_CLIENT_ID}>
             <span>
-              <Image src="/img/login_google_icon.png" alt=""/>
+              <Image src="/img/login_google_icon.png" alt="" width="100" height="30"/>
             </span>
             <span>구글로 시작</span>
           </div>
@@ -37,14 +37,14 @@ export default function Subscription() {
             'redirect_uri=' + get_redirect_uri('kakao') + '&' +
             'response_type=code'}>
             <span>
-              <Image src="/img/login_kakao_icon.png" alt=""/>
+              <Image src="/img/login_kakao_icon.png" alt="" width="100" height="30"/>
             </span>
             <span>카카오로 시작</span>
           </div>
           <div id="github-login" className="login"
                onClick={() => window.location.href = 'https://github.com/login/oauth/authorize?client_id=' + GITHUB_CLIENT_ID + '&redirect_uri=' + get_redirect_uri('github')}>
             <span>
-              <Image src="/img/login_github_icon.png" alt=""/>
+              <Image src="/img/login_github_icon.png" alt="" width="100" height="30"/>
             </span>
             <span>깃허브로 시작</span>
           </div>
