@@ -4,7 +4,7 @@ import { GOOGLE_CLIENT_ID, GITHUB_CLIENT_ID, KAKAO_CLIENT_ID } from '@/config.js
 import SigninBody from "@/component/common/signinBody";
 
 export default function Subscription() {
-  const get_redirect_uri = (provider) => {
+  const get_redirect_uri = (provider: string) => {
     const protocol = location.protocol;
     const port = protocol === 'https:' ? ':443' : ':8888';
     const hostname = window.location.hostname;
