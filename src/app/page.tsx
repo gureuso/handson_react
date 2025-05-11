@@ -2,6 +2,7 @@
 import {useState} from "react";
 import Body from "@/component/common/body";
 import VideoMain from "@/component/videoMain";
+import Image from "next/image";
 
 export default function Home() {
   const [tag, setTag] = useState("전체");
@@ -31,14 +32,14 @@ export default function Home() {
             (video.tag === tag || tag === "전체") ? <div key={idx+100} className="col-lg-4 col-sm-6" style={{cursor: "pointer"}}>
               <VideoMain
                 width="100%"
-                height={null}
+                height={undefined}
                 key={idx}
                 src={video.src}
                 poster={video.poster}
               />
               <div className="row" style={{marginTop: 10}}>
                 <div className="col-2">
-                  <img style={{borderRadius: 30}} alt="" src="/img/hanbit_logo.png" width="30" height="30"/>
+                  <Image style={{borderRadius: 30}} alt="" src="/img/hanbit_logo.png" width="30" height="30"/>
                 </div>
                 <div className="col-10 m-0 p-0">
                   <span>{video.title}</span><br/>
@@ -52,7 +53,7 @@ export default function Home() {
       </div>
 
       <div className="shorts-main">
-        <img style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="90" height="35"/>
+        <Image style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="90" height="35"/>
         <div className="row">
           {shortsList.map((video, idx) => (
             <div key={idx+1000} className="col-lg-3 col-sm-4" style={{cursor: "pointer"}}>

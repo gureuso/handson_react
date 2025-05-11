@@ -5,8 +5,13 @@ import {usePathname, useRouter} from "next/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {Dropdown} from "react-bootstrap";
+import Image from "next/image";
 
-export default function Body({children}) {
+interface IProps {
+  children: React.ReactNode;
+}
+
+export default function Body({children}: IProps) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -14,7 +19,7 @@ export default function Body({children}) {
     <div className="row p-3">
       <div className="col-lg-12 d-flex justify-content-between">
         <div className="header-logo" onClick={() => router.push('/')}>
-          <img src="/img/youtube_icon.png" alt="" width="120"/>
+          <Image src="/img/youtube_icon.png" alt="" width="120"/>
         </div>
         <div>
           <div className="input-group header-search">
@@ -30,7 +35,7 @@ export default function Body({children}) {
           <div className="input-group header-login-profile">
             <Dropdown>
               <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                <img src="/img/profile.png" width="40" alt="" style={{ borderRadius: '50%' }} />
+                <Image src="/img/profile.png" width="40" alt="" style={{ borderRadius: '50%' }} />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

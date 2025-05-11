@@ -3,7 +3,6 @@
 import Body from "@/component/common/body";
 import {Button, Form, InputGroup} from "react-bootstrap";
 import {useState} from "react";
-import axios from "axios";
 import api from "@/component/api";
 
 export default function Short() {

@@ -1,8 +1,15 @@
 import React, { useRef, useState } from "react";
 
-const VideoMain = ({ src, poster, width, height }) => {
+interface IProps {
+  src: string;
+  poster: string;
+  width: string;
+  height: string | number | undefined;
+}
+
+const VideoMain = ({ src, poster, width, height }: IProps) => {
   const [key, setKey] = useState(0);
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleMouseEnter = () => {
     videoRef.current?.play();
@@ -10,8 +17,8 @@ const VideoMain = ({ src, poster, width, height }) => {
 
   const handleMouseLeave = () => {
     videoRef.current?.pause();
-    videoRef.current.currentTime = 0;
-    // 고유 컴포넌트 내에서만 key 업데이트
+    videoRef.current!.currentTime = 0;
+
     setKey(prev => prev + 1);
   };
 

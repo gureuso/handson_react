@@ -4,8 +4,13 @@ import React from "react";
 import {usePathname, useRouter} from "next/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Image from "next/image";
 
-export default function SigninBody({children}) {
+interface IProps {
+  children: React.ReactNode;
+}
+
+export default function SigninBody({children}: IProps) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -13,7 +18,7 @@ export default function SigninBody({children}) {
     <div className="row p-3">
       <div className="col-lg-12 d-flex justify-content-between">
         <div className="header-logo" onClick={() => router.push('/')}>
-          <img src="/img/youtube_icon.png" alt="" width="120"/>
+          <Image src="/img/youtube_icon.png" alt="" width="120"/>
         </div>
         <div>
           <div className="input-group header-search">
