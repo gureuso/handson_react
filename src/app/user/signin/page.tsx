@@ -1,12 +1,14 @@
 'use client';
 
-import { GOOGLE_CLIENT_ID, GITHUB_CLIENT_ID, KAKAO_CLIENT_ID } from '@/config.json';
+import { GOOGLE_CLIENT_ID, GITHUB_CLIENT_ID, KAKAO_CLIENT_ID, APP_MODE } from '@/config.json';
 import SigninBody from "@/component/common/signinBody";
 import Image from "next/image";
 
 export default function Subscription() {
   const get_redirect_uri = (provider: string) => {
-    // return 'http://localhost:8888/youtube/api/callback/' + provider;
+    if (APP_MODE === 'development') {
+      return 'http://localhost:8888/youtube/api/callback/' + provider;
+    }
     return 'https://youtube-api.devmaker.kr/youtube/api/callback/' + provider;
   }
 

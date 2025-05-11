@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {Dropdown} from "react-bootstrap";
 import Image from "next/image";
+import { APP_MODE } from '@/config.json';
 
 interface IProps {
   children: React.ReactNode;
@@ -39,8 +40,9 @@ export default function Body({children}: IProps) {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="https://youtube-api.devmaker.kr/youtube/api/signout">로그아웃</Dropdown.Item>
-                {/*<Dropdown.Item href="http://localhost:8888/youtube/api/signout">로그아웃</Dropdown.Item>*/}
+                {APP_MODE === 'development' ?
+                  <Dropdown.Item href="http://localhost:8888/youtube/api/signout">로그아웃</Dropdown.Item> :
+                  <Dropdown.Item href="https://youtube-api.devmaker.kr/youtube/api/signout">로그아웃</Dropdown.Item>}
                 <Dropdown.Item href="/auth">유저인증</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
