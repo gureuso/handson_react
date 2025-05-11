@@ -133,3 +133,57 @@ body {
 .dropdown-item:active {
   background-color: lightgrey !important;
 }
+
+.video-tag {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.video-tag > li:nth-child(1) {
+  margin-left: 0;
+}
+
+.video-tag > li {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #41464b;
+}
+
+.video-tag > li:hover {
+  background-color: white;
+  color: black;
+}
+
+.video-tag > li.active {
+  background-color: white;
+  color: black;
+}
+
+.video-main {
+  margin-top: 10px;
+}
+
+.video-main > div > div > img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.shorts-main {
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.shorts-main > div > div > img {
+  border-radius: 5px;
+}
+
+.shorts-main > div > div > p:nth-child(3) {
+  font-size: 14px;
+  color: gray;
+}
+
