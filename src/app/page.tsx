@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="shorts-main">
+      <div className="shorts-sub">
         <Image style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="110" height="35"/>
         <div className="row">
           {shortsList.map((video, idx) => (

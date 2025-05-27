@@ -173,17 +173,40 @@ body {
   border-radius: 5px;
 }
 
-.shorts-main {
+.shorts-sub {
   margin-top: 30px;
   cursor: pointer;
 }
 
-.shorts-main > div > div > img {
+.shorts-sub > div > div > img {
   border-radius: 5px;
 }
 
-.shorts-main > div > div > p:nth-child(3) {
+.shorts-sub > div > div > p:nth-child(3) {
   font-size: 14px;
   color: gray;
 }
 
+.shorts-main-btn {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.shorts-main-btn > i:hover {
+  background-color: #6c757d;
+}
+
+.shorts-main-btn > i {
+  background-color: gray;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.shorts-main-text {
+  margin-left: 4px;
+  margin-bottom: 10px;
+}
+
+.shorts-main-text-like {
+  margin-bottom: 10px;
+}
