@@ -18,7 +18,7 @@ export default function Home() {
     <Body>
       <ul className="video-tag">
         <li onClick={() => setTag("전체")} value="전체" className={tag === "전체" ? "active" : ""}>전체</li>
-        {res.tags.map((tag, idx) => (
+        {res.tags.map((tag: any, idx) => (
           <li key={idx} onClick={() => setTag(tag.name)} value={tag.name} className={tag === tag.name ? "active" : ""}>{tag.name}</li>)
         )}
       </ul>
@@ -52,7 +52,7 @@ export default function Home() {
       <div className="shorts-sub">
         <Image style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="110" height="35"/>
         <div className="row">
-          {res.shorts.map((shorts, idx) => (
+          {res.shorts.map((shorts: any, idx) => (
             <div key={idx+1000} className="col-lg-3 col-sm-4" style={{cursor: "pointer"}}>
               <VideoMain
                 width="100%"
