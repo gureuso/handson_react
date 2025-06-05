@@ -25,7 +25,7 @@ export default function Home() {
 
       <div className="video-main">
         <div className="row">
-          {res.videos.map((video, idx) => (
+          {res.videos.map((video: any, idx) => (
             (video.tag === tag || tag === "전체") ? <div key={idx+100} className="col-lg-4 col-sm-6" style={{cursor: "pointer"}}>
               <VideoMain
                 width="100%"
