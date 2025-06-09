@@ -1,14 +1,27 @@
+'use client'
+import Image from "next/image";
+import {useEffect, useState} from "react";
+import {usePathname, useRouter} from "next/navigation";
+import Api from "@/component/api";
 import Body from "@/component/common/body";
 import ShortsMain from "@/component/ShortsMain";
-import Image from "next/image";
 
 export default function Short() {
-  // const shortsList = [
-  //   { src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-  //   { src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-  //   { src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-  //   { src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-  // ];
+  const router = useRouter();
+  const pathname = usePathname();
+  const [currentShorts, setCurrentShorts] = useState<any>({});
+  const [nextShorts, setNextShorts] = useState<any>({});
+
+  const moveNextShorts = async () => {
+    router.push('/shorts/' + nextShorts['id']);
+  }
+
+  useEffect(() => {
+    Api.get('/youtube/api/shorts/' + pathname.replace('/shorts/', '')).then((data: any) => {
+      setCurrentShorts(data.data.current_shorts);
+      setNextShorts(data.data.next_shorts);
+    });
+  }, []);
 
   return (
     <Body>
@@ -20,7 +33,7 @@ export default function Short() {
             <ShortsMain
               width="100%"
               height="100%"
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4">
+              src={currentShorts['content']}>
             </ShortsMain>
           </div>
           <div className="col-lg-3 d-flex flex-column align-items-start">
@@ -50,6 +63,7 @@ export default function Short() {
             </div>
             <Image style={{borderRadius: 10, marginLeft: 3, marginTop: 5}} src="/img/hanbit_logo.png" alt="" width={30} height={30}/>
             <div
+              onClick={() => moveNextShorts()}
               className="shorts-main-btn"
               style={{
                 position: 'fixed',

@@ -18,7 +18,7 @@ export default function SigninBody({children}: IProps) {
     <div className="row p-3">
       <div className="col-lg-12 d-flex justify-content-between">
         <div className="header-logo" onClick={() => router.push('/')}>
-          <Image src="/img/youtube_icon.png" alt="" width="110" height="35"/>
+          <Image priority={true} src="/img/youtube_icon.png" alt="" width="110" height="35"/>
         </div>
         <div>
           <div className="input-group header-search">
