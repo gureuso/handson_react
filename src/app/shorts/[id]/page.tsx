@@ -5,6 +5,7 @@ import {usePathname, useRouter} from "next/navigation";
 import Api from "@/component/api";
 import Body from "@/component/common/body";
 import ShortsMain from "@/component/ShortsMain";
+import {black} from "next/dist/lib/picocolors";
 
 export default function Short() {
   const router = useRouter();
@@ -12,15 +13,37 @@ export default function Short() {
   const [commentShow, setCommentShow] = useState<boolean>(false);
   const [currentShorts, setCurrentShorts] = useState<any>({});
   const [nextShorts, setNextShorts] = useState<any>({});
+  const [liked, setLiked] = useState<any>({});
+  const [disliked, setDisliked] = useState<any>({});
 
   const moveNextShorts = async () => {
     router.push('/shorts/' + nextShorts['id']);
+  }
+
+  const share = async () => {
+    const currentUrl = window.location.href;
+    await navigator.clipboard.writeText(currentUrl);
+    alert('주소가 클립보드에 복사되었습니다.');
+  }
+
+  const like = async () => {
+    Api.post('/youtube/api/shorts/' + pathname.replace('/shorts/', '') + '/like').then((data: any) => {
+      setLiked(data.data);
+    });
+  }
+
+  const dislike = async () => {
+    Api.post('/youtube/api/shorts/' + pathname.replace('/shorts/', '') + '/dislike').then((data: any) => {
+      setDisliked(data.data);
+    });
   }
 
   useEffect(() => {
     Api.get('/youtube/api/shorts/' + pathname.replace('/shorts/', '')).then((data: any) => {
       setCurrentShorts(data.data.current_shorts);
       setNextShorts(data.data.next_shorts);
+      setLiked(data.data.liked);
+      setDisliked(data.data.disliked);
     });
   }, []);
 
@@ -39,19 +62,19 @@ export default function Short() {
           </div>
 
           <div className={`d-flex flex-column align-items-start ${commentShow ? 'col-lg-1' : 'col-lg-3'}`}>
-            <div className="shorts-main-btn">
-              <i className="bi bi-hand-thumbs-up-fill"></i>
+            <div className="shorts-main-btn" onClick={() => like()}>
+              <i className={`bi bi-hand-thumbs-up-fill ${liked['liked'] ? 'active' : ''}`}></i>
             </div>
             <div className="shorts-main-text-like">
-              {currentShorts['like_cnt'] < 1000 && '좋아요'}
-              {(currentShorts['like_cnt'] >= 1000) && currentShorts['like_cnt']}
+              {liked['cnt'] < 1000 && <><span style={{color: 'black'}}>0</span>{liked['cnt']}</>}
+              {(liked['cnt'] >= 1000) && liked['cnt']}
             </div>
-            <div className="shorts-main-btn">
-              <i className="bi bi-hand-thumbs-down-fill"></i>
+            <div className="shorts-main-btn" onClick={() => dislike()}>
+              <i className={`bi bi-hand-thumbs-down-fill ${disliked['disliked'] ? 'active' : ''}`}></i>
             </div>
             <div className="shorts-main-text-like">
-              {currentShorts['dislike_cnt'] < 1000 && '싫어요'}
-              {(currentShorts['dislike_cnt'] >= 1000) && currentShorts['dislike_cnt']}
+              {liked['cnt'] < 1000 && <><span style={{color: 'black'}}>0</span>{disliked['cnt']}</>}
+              {(disliked['cnt'] >= 1000) && disliked['cnt']}
             </div>
             <div className="shorts-main-btn" onClick={() => setCommentShow(!commentShow)}>
               <i className="bi bi-chat-left-dots-fill"></i>
@@ -59,7 +82,7 @@ export default function Short() {
             <div className="shorts-main-text">
               댓글
             </div>
-            <div className="shorts-main-btn">
+            <div className="shorts-main-btn" onClick={() => share()}>
               <i className="bi bi-share-fill"></i>
             </div>
             <div className="shorts-main-text">

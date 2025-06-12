@@ -192,6 +192,11 @@ body {
   cursor: pointer;
 }
 
+.shorts-main-btn > i.active {
+  background-color: white;
+  color: black;
+}
+
 .shorts-main-btn > i:hover {
   background-color: #6c757d;
 }
