@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import {memo, useEffect, useRef} from 'react';
 
 interface IProps {
   src: string;
@@ -40,17 +40,16 @@ const ShortsMain = ({ src, width, height }: IProps) => {
     };
   }, []);
 
-  return (
-    <video
-      ref={videoRef}
-      src={src}
-      width={width}
-      height={height}
-      preload="auto"
-      muted={true}
-      controls
-    />
-  );
+  return (<video
+    ref={videoRef}
+    src={src}
+    width={width}
+    height={height}
+    preload="auto"
+    muted={true}
+    loop={true}
+    controls
+  />);
 };
 
 export default ShortsMain;

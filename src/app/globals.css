@@ -210,3 +210,35 @@ body {
 .shorts-main-text-like {
   margin-bottom: 10px;
 }
+
+.shorts-main-comment {
+  border: 1px solid #41464b;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.shorts-main-comment-header {
+  padding: 15px;
+}
+
+.shorts-main-comment-header > span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.shorts-main-comment-header > span:nth-child(2) {
+  color: darkgray;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.shorts-main-comment-body {
+  padding: 15px;
+  height: 65%;
+  border-top: 1px solid #41464b;
+}
+
+.shorts-main-comment-footer {
+  padding: 15px;
+  border-top: 1px solid #41464b;
+}
