@@ -1,5 +1,5 @@
 'use client';
-import {memo, useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 
 interface IProps {
   src: string;

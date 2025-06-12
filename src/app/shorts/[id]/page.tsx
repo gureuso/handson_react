@@ -5,7 +5,6 @@ import {usePathname, useRouter} from "next/navigation";
 import Api from "@/component/api";
 import Body from "@/component/common/body";
 import ShortsMain from "@/component/ShortsMain";
-import {black} from "next/dist/lib/picocolors";
 
 export default function Short() {
   const router = useRouter();
