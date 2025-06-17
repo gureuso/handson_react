@@ -5,6 +5,7 @@ import {usePathname, useRouter} from "next/navigation";
 import Api from "@/component/api";
 import Body from "@/component/common/body";
 import ShortsMain from "@/component/ShortsMain";
+import ChildComment from "@/component/shorts/childComment";
 
 export default function Short() {
   const router = useRouter();
@@ -12,11 +13,28 @@ export default function Short() {
   const [commentShow, setCommentShow] = useState<boolean>(false);
   const [currentShorts, setCurrentShorts] = useState<any>({});
   const [nextShorts, setNextShorts] = useState<any>({});
-  const [liked, setLiked] = useState<any>({});
-  const [disliked, setDisliked] = useState<any>({});
+  const [likeDislike, setLikeDislike] = useState<any>({like: {}, dislike: {}});
+  const [comments, setComments] = useState<any>([]);
+  const [comment, setComment] = useState<any>("");
 
   const moveNextShorts = async () => {
     router.push('/shorts/' + nextShorts['id']);
+  }
+
+  const getComments = async () => {
+    Api.get('/youtube/api/shorts/' + currentShorts['id'] + '/comments').then((data: any) => {
+      setComments(data.data.comments);
+    });
+  }
+
+  const createComment = async () => {
+    if (comment == null || comment == "") {
+      return alert("댓글이 비어 있습니다.");
+    }
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + "/comments", {content: comment}).then(() => {
+      setComment("");
+      getComments();
+    });
   }
 
   const share = async () => {
@@ -26,23 +44,41 @@ export default function Short() {
   }
 
   const like = async () => {
-    Api.post('/youtube/api/shorts/' + pathname.replace('/shorts/', '') + '/like').then((data: any) => {
-      setLiked(data.data);
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/like').then((data: any) => {
+      setLikeDislike(data.data);
     });
   }
 
   const dislike = async () => {
-    Api.post('/youtube/api/shorts/' + pathname.replace('/shorts/', '') + '/dislike').then((data: any) => {
-      setDisliked(data.data);
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/dislike').then((data: any) => {
+      setLikeDislike(data.data);
     });
   }
+
+  const commentLike = async (commentId: number) => {
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/comments/' + commentId + '/like').then((data: any) => {
+      getComments();
+    });
+  }
+
+  const commentDislike = async (commentId: number) => {
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/comments/' + commentId + '/dislike').then((data: any) => {
+      getComments();
+    });
+  }
+
+  useEffect(() => {
+    if (!commentShow) {
+      return;
+    }
+    getComments();
+  }, [commentShow]);
 
   useEffect(() => {
     Api.get('/youtube/api/shorts/' + pathname.replace('/shorts/', '')).then((data: any) => {
       setCurrentShorts(data.data.current_shorts);
       setNextShorts(data.data.next_shorts);
-      setLiked(data.data.liked);
-      setDisliked(data.data.disliked);
+      setLikeDislike({like: data.data.liked, dislike: data.data.disliked});
     });
   }, []);
 
@@ -62,20 +98,20 @@ export default function Short() {
 
           <div className={`d-flex flex-column align-items-start ${commentShow ? 'col-lg-1' : 'col-lg-3'}`}>
             <div className="shorts-main-btn" onClick={() => like()}>
-              <i className={`bi bi-hand-thumbs-up-fill ${liked['liked'] ? 'active' : ''}`}></i>
+              <i className={`bi bi-hand-thumbs-up-fill ${likeDislike['like']['liked'] ? 'active' : ''}`}></i>
             </div>
             <div className="shorts-main-text-like">
-              {liked['cnt'] < 1000 && <><span style={{color: 'black'}}>0</span>{liked['cnt']}</>}
-              {(liked['cnt'] >= 1000) && liked['cnt']}
+              {likeDislike['like']['cnt'] < 1000 && <><span style={{color: 'black'}}>0</span>{likeDislike['like']['cnt']}</>}
+              {(likeDislike['like']['cnt'] >= 1000) && likeDislike['like']['cnt']}
             </div>
             <div className="shorts-main-btn" onClick={() => dislike()}>
-              <i className={`bi bi-hand-thumbs-down-fill ${disliked['disliked'] ? 'active' : ''}`}></i>
+              <i className={`bi bi-hand-thumbs-down-fill ${likeDislike['dislike']['disliked'] ? 'active' : ''}`}></i>
             </div>
             <div className="shorts-main-text-like">
-              {liked['cnt'] < 1000 && <><span style={{color: 'black'}}>0</span>{disliked['cnt']}</>}
-              {(disliked['cnt'] >= 1000) && disliked['cnt']}
+              {likeDislike['dislike']['cnt'] < 1000 && <><span style={{color: 'black'}}>0</span>{likeDislike['dislike']['cnt']}</>}
+              {(likeDislike['dislike']['cnt'] >= 1000) && likeDislike['dislike']['cnt']}
             </div>
-            <div className="shorts-main-btn" onClick={() => setCommentShow(!commentShow)}>
+            <div className="shorts-main-btn" onClick={() => {setCommentShow(!commentShow);}}>
               <i className="bi bi-chat-left-dots-fill"></i>
             </div>
             <div className="shorts-main-text">
@@ -107,13 +143,48 @@ export default function Short() {
             <div className="col-lg-5">
               <div className="shorts-main-comment">
                 <div className="shorts-main-comment-header">
-                  <span>댓글</span> <span>211</span>
+                  <span>댓글</span> <span>{comments.length}</span>
                 </div>
-                <div className="shorts-main-comment-body">
-                  213
+                <div className="shorts-main-comment-body overflow-y-auto">
+                  {comments.map((comment: any, index: number) => (
+                    <div key={index} className="d-flex">
+                      <div>
+                        <Image style={{borderRadius: 10, marginTop: 3}} src={comment.profile_image} alt="" width={40} height={40}/>
+                      </div>
+                      <div style={{paddingLeft: 15, width: 280, marginBottom: 10}} className="d-flex flex-column">
+                        <span style={{fontSize: 14}}>@{comment.nickname}</span>
+                        <p style={{marginBottom: 5, fontSize: 16}}>{comment.content}</p>
+                        <p>
+                          <i onClick={() => {commentLike(comment.id);}} style={{cursor: "pointer"}} className={`bi ${comment.liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'}`}></i><span style={{marginLeft: 3}}>{comment.like_cnt}</span>
+                          <i onClick={() => {commentDislike(comment.id);}} style={{cursor: "pointer", marginLeft: 5}} className={`bi ${comment.disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}`}></i><span style={{marginLeft: 3}}>{comment.dislike_cnt}</span>
+                        </p>
+
+                        <ChildComment getComments={getComments} commentId={comment.id} shortsId={currentShorts.id} />
+
+                        {comment.child_comments.map((childComment: any, index: number) => (
+                          <>
+                            <div key={index} className="d-flex">
+                              <div>
+                                <Image style={{borderRadius: 10, marginTop: 10}} src={childComment.profile_image} alt="" width={30} height={30}/>
+                              </div>
+                              <div style={{paddingLeft: 15, width: 280, marginBottom: 10, marginTop: 5}} className="d-flex flex-column">
+                                <span style={{fontSize: 14}}>@{childComment.nickname}</span>
+                                <p style={{marginBottom: 5, fontSize: 16}}>{childComment.content}</p>
+                                <p>
+                                  <i onClick={() => {commentLike(childComment.id);}} style={{cursor: "pointer"}} className={`bi ${childComment.liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'}`}></i><span style={{marginLeft: 3}}>{childComment.like_cnt}</span>
+                                  <i onClick={() => {commentDislike(childComment.id);}} style={{cursor: "pointer", marginLeft: 5}} className={`bi ${childComment.disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}`}></i><span style={{marginLeft: 3}}>{childComment.dislike_cnt}</span>
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="shorts-main-comment-footer">
-                  213
+                <div className="shorts-main-comment-footer d-flex">
+                  <input type="text" placeholder="댓글 추가..." onChange={(e) => setComment(e.target.value)} value={comment} />
+                  <button onClick={createComment}>댓글</button>
                 </div>
               </div>
             </div>

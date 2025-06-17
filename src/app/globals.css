@@ -239,11 +239,45 @@ body {
 
 .shorts-main-comment-body {
   padding: 15px;
-  height: 65%;
+  height: 400px;
   border-top: 1px solid #41464b;
 }
 
 .shorts-main-comment-footer {
   padding: 15px;
   border-top: 1px solid #41464b;
+}
+
+.shorts-main-comment-footer > input {
+  width: 85%;
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid #41464b;
+  color: white;
+  outline: none;
+}
+
+.shorts-main-comment-footer > button {
+  border-radius: 10px;
+  background-color: royalblue;
+  border: none;
+  color: white;
+  width: 15%;
+}
+
+.shorts-main-child-comment > input {
+  width: 85%;
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid #41464b;
+  color: white;
+  outline: none;
+}
+
+.shorts-main-child-comment > button {
+  border-radius: 10px;
+  background-color: royalblue;
+  border: none;
+  color: white;
+  width: 15%;
 }
