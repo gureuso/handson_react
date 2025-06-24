@@ -42,7 +42,7 @@ export default function Body({children}: IProps) {
               <Dropdown.Menu>
                 {APP_MODE === 'development' ?
                   <Dropdown.Item href="http://localhost:8888/youtube/api/signout">로그아웃</Dropdown.Item> :
-                  <Dropdown.Item href="https://youtube-api.devmaker.kr/youtube/api/signout">로그아웃</Dropdown.Item>}
+                  <Dropdown.Item href="https://youtube.devmaker.kr/api/youtube/api/signout">로그아웃</Dropdown.Item>}
                 <Dropdown.Item href="/auth">유저인증</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

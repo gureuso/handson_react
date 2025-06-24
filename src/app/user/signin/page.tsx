@@ -9,7 +9,7 @@ export default function Subscription() {
     if (APP_MODE === 'development') {
       return 'http://localhost:8888/youtube/api/callback/' + provider;
     }
-    return 'https://youtube-api.devmaker.kr/youtube/api/callback/' + provider;
+    return 'https://youtube.devmaker.kr/api/youtube/api/callback/' + provider;
   }
 
   return (
