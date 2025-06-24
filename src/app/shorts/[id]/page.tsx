@@ -56,13 +56,13 @@ export default function Short() {
   }
 
   const commentLike = async (commentId: number) => {
-    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/comments/' + commentId + '/like').then((data: any) => {
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/comments/' + commentId + '/like').then(() => {
       getComments();
     });
   }
 
   const commentDislike = async (commentId: number) => {
-    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/comments/' + commentId + '/dislike').then((data: any) => {
+    Api.post('/youtube/api/shorts/' + currentShorts['id'] + '/comments/' + commentId + '/dislike').then(() => {
       getComments();
     });
   }

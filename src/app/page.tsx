@@ -55,7 +55,7 @@ export default function Home() {
         <Image style={{marginBottom: 20}} alt="" src="/img/shorts_logo.png" width="110" height="35"/>
         <div className="row">
           {res.shorts.map((shorts: any, idx) => (
-            <div key={idx+1000} className="col-lg-3 col-sm-4" style={{cursor: "pointer"}} onClick={(e) => {router.push("/shorts/" + shorts.id);}}>
+            <div key={idx+1000} className="col-lg-3 col-sm-4" style={{cursor: "pointer"}} onClick={() => {router.push("/shorts/" + shorts.id);}}>
               <VideoMain
                 width="100%"
                 height="85%"
