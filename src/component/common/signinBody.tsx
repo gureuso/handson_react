@@ -44,7 +44,7 @@ export default function SigninBody({children}: IProps) {
               <i className="bi bi-house text-white"></i>
               <span>홈</span>
             </div>
-            <div className={`nav-sub p-2 ${pathname === '/shorts' ? 'active' : ''}`} onClick={() => router.push("/shorts")}>
+            <div className={`nav-sub p-2 ${pathname === '/shorts' ? 'active' : ''}`} onClick={() => router.push("/shorts/1")}>
               <i className="bi bi-film text-white"></i>
               <span>Shorts</span>
             </div>

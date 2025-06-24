@@ -266,12 +266,12 @@ body {
 }
 
 .shorts-main-child-comment > input {
-  width: 85%;
   background-color: black;
   border: none;
   border-bottom: 1px solid #41464b;
   color: white;
   outline: none;
+  width: 180px;
 }
 
 .shorts-main-child-comment > button {
@@ -279,5 +279,5 @@ body {
   background-color: royalblue;
   border: none;
   color: white;
-  width: 15%;
+  width: 40px;
 }

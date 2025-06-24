@@ -153,7 +153,7 @@ export default function Short() {
                       </div>
                       <div style={{paddingLeft: 15, width: 280, marginBottom: 10}} className="d-flex flex-column">
                         <span style={{fontSize: 14}}>@{comment.nickname}</span>
-                        <p style={{marginBottom: 5, fontSize: 16}}>{comment.content}</p>
+                        <p style={{marginBottom: 5, fontSize: 16, wordBreak: "break-all"}}>{comment.content}</p>
                         <p>
                           <i onClick={() => {commentLike(comment.id);}} style={{cursor: "pointer"}} className={`bi ${comment.liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'}`}></i><span style={{marginLeft: 3}}>{comment.like_cnt}</span>
                           <i onClick={() => {commentDislike(comment.id);}} style={{cursor: "pointer", marginLeft: 5}} className={`bi ${comment.disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}`}></i><span style={{marginLeft: 3}}>{comment.dislike_cnt}</span>
@@ -167,9 +167,9 @@ export default function Short() {
                               <div>
                                 <Image style={{borderRadius: 10, marginTop: 10}} src={childComment.profile_image} alt="" width={30} height={30}/>
                               </div>
-                              <div style={{paddingLeft: 15, width: 280, marginBottom: 10, marginTop: 5}} className="d-flex flex-column">
+                              <div style={{paddingLeft: 15, width: 210, marginBottom: 10, marginTop: 5}} className="d-flex flex-column">
                                 <span style={{fontSize: 14}}>@{childComment.nickname}</span>
-                                <p style={{marginBottom: 5, fontSize: 16}}>{childComment.content}</p>
+                                <p style={{marginBottom: 5, fontSize: 16, wordBreak: "break-all"}}>{childComment.content}</p>
                                 <p>
                                   <i onClick={() => {commentLike(childComment.id);}} style={{cursor: "pointer"}} className={`bi ${childComment.liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'}`}></i><span style={{marginLeft: 3}}>{childComment.like_cnt}</span>
                                   <i onClick={() => {commentDislike(childComment.id);}} style={{cursor: "pointer", marginLeft: 5}} className={`bi ${childComment.disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}`}></i><span style={{marginLeft: 3}}>{childComment.dislike_cnt}</span>
