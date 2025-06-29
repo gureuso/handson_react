@@ -5,7 +5,7 @@ import {usePathname, useRouter} from "next/navigation";
 import Api from "@/component/api";
 import Body from "@/component/common/body";
 import ShortsMain from "@/component/ShortsMain";
-import ChildComment from "@/component/shorts/childComment";
+import ChildShortsComment from "@/component/shorts/childShortsComment";
 
 export default function Short() {
   const router = useRouter();
@@ -159,7 +159,7 @@ export default function Short() {
                           <i onClick={() => {commentDislike(comment.id);}} style={{cursor: "pointer", marginLeft: 5}} className={`bi ${comment.disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'}`}></i><span style={{marginLeft: 3}}>{comment.dislike_cnt}</span>
                         </p>
 
-                        <ChildComment getComments={getComments} commentId={comment.id} shortsId={currentShorts.id} />
+                        <ChildShortsComment getComments={getComments} commentId={comment.id} shortsId={currentShorts.id} />
 
                         {comment.child_comments.map((childComment: any, index: number) => (
                           <>

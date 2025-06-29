@@ -28,7 +28,7 @@ export default function Home() {
       <div className="video-main">
         <div className="row">
           {res.videos.map((video: any, idx) => (
-            (video.tag === tag || tag === "전체") ? <div key={idx+100} className="col-lg-4 col-sm-6" style={{cursor: "pointer"}}>
+            (video.tag === tag || tag === "전체") ? <div key={idx+100} className="col-lg-4 col-sm-6" style={{cursor: "pointer"}} onClick={() => {router.push("/video/" + video.id);}}>
               <VideoMain
                 width="100%"
                 height={undefined}

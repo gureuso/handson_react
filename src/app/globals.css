@@ -281,3 +281,118 @@ body {
   color: white;
   width: 40px;
 }
+
+.video-subscription {
+  width: 60px;
+  border-radius: 20px;
+  font-size: 14px;
+  height: 40px;
+}
+
+.video-subscription:hover {
+  opacity: 0.8;
+}
+
+.video-like {
+  font-size: 14px;
+  height: 40px;
+  color: white;
+  background-color: #41464b;
+  cursor: pointer;
+}
+
+.video-like:hover {
+  background-color: #6c757d;
+}
+
+.video-like.like {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 10px;
+}
+
+.video-like.dislike {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-left: 0;
+  padding: 10px 10px 10px 0;
+}
+
+.video-share {
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 14px;
+  height: 40px;
+  color: white;
+  background-color: #41464b;
+  padding: 10px;
+}
+
+.video-share > i {
+  margin-right: 8px;
+}
+
+.video-share:hover {
+  background-color: #6c757d;
+}
+
+.video-main-comment {
+  border-radius: 10px;
+  height: 100%;
+}
+
+.video-main-comment-header {
+  padding-top: 15px;
+}
+
+.video-main-comment-header > span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.video-main-comment-body {
+  padding-top: 15px;
+  height: 400px;
+}
+
+.video-main-comment-footer {
+  padding-top: 15px;
+}
+
+.video-main-comment-footer > input {
+  width: 88%;
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid #41464b;
+  color: white;
+  outline: none;
+}
+
+.video-main-comment-footer > div {
+  width: 8%;
+}
+
+.video-main-comment-footer > button {
+  border-radius: 10px;
+  background-color: royalblue;
+  border: none;
+  color: white;
+  width: 10%;
+}
+
+.video-main-child-comment > input {
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid #41464b;
+  color: white;
+  outline: none;
+  width: 250px;
+}
+
+.video-main-child-comment > button {
+  border-radius: 10px;
+  background-color: royalblue;
+  border: none;
+  color: white;
+  width: 40px;
+}
