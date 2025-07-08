@@ -3,14 +3,14 @@
 import {useState} from "react";
 import Api from "@/component/api";
 
-const ChildVideoComment = ({getComments, shortsId, commentId}: {getComments: () => void, shortsId: number, commentId: number}) => {
+const ChildVideoComment = ({getComments, videoId, commentId}: {getComments: () => void, videoId: number, commentId: number}) => {
   const [childComment, setChildComment] = useState("");
 
   const createChildComment = async (commentId: number) => {
     if (childComment == null || childComment == "") {
       return alert("답글이 비어 있습니다.");
     }
-    Api.post('/youtube/api/videos/' + shortsId + "/comments/" + commentId, {content: childComment}).then(() => {
+    Api.post('/youtube/api/videos/' + videoId + "/comments/" + commentId, {content: childComment}).then(() => {
       setChildComment("");
       getComments();
     });
