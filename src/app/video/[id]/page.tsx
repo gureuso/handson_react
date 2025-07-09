@@ -99,7 +99,7 @@ export default function Short() {
   }, []);
 
   useEffect(() => {
-    const domain = APP_MODE === "development" ? "ws://localhost:8888/ws/chat/" : "wss://youtube.devmaker.kr/api/ws/chat/"
+    const domain = APP_MODE === "development" ? "ws://localhost:8888/ws/chat/" : "wss://youtube-api.devmaker.kr/ws/chat/"
     const socket = new WebSocket(domain + pathname.replace('/video/', ''));
     socketRef.current = socket
 
