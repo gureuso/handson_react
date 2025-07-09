@@ -1,4 +1,5 @@
 'use client'
+import { APP_MODE } from '@/config.json';
 import Image from "next/image";
 import React, {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
@@ -98,7 +99,8 @@ export default function Short() {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8888/ws/chat/" + pathname.replace('/video/', ''));
+    const domain = APP_MODE === "development" ? "ws://localhost:8888/ws/chat/" : "wss://youtube.devmaker.kr/api/ws/chat/"
+    const socket = new WebSocket(domain + pathname.replace('/video/', ''));
     socketRef.current = socket
 
     socket.onopen = () => {
