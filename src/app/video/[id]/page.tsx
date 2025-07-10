@@ -94,6 +94,12 @@ export default function Short() {
       setMessages(data.data.messages);
       setSubscription(data.data.subscription);
       setVideoUser(data.data.video_user);
+    }).catch(() => {
+      if(APP_MODE === "development") {
+        window.location.href = "http://localhost:8888/youtube/api/signout";
+      } else {
+        window.location.href = "https://youtube.devmaker.kr/api/youtube/api/signout";
+      }
     });
     getComments();
   }, []);

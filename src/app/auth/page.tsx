@@ -2,8 +2,9 @@
 
 import Body from "@/component/common/body";
 import {Button, Form, InputGroup} from "react-bootstrap";
-import {useState} from "react";
-import api from "@/component/api";
+import {useEffect, useState} from "react";
+import Api from "@/component/api";
+import { APP_MODE } from '@/config.json';
 
 export default function Short() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -11,7 +12,7 @@ export default function Short() {
   const [emailCode, setEmailCode] = useState("");
 
   const sendSMS = async () => {
-    await api.post(
+    await Api.post(
       "/youtube/api/auth/sms",
       {phone: phoneNumber},
       {headers: {"Content-Type": "application/json"}},
@@ -20,14 +21,14 @@ export default function Short() {
   }
 
   const receivePhoneCode = async () => {
-    await api.get(
-      `/youtube/api/auth/sms?code=${phoneCode}`,
+    await Api.get(
+      `/youtube/Api/auth/sms?code=${phoneCode}`,
     );
     alert("인증이 완료 되었습니다.");
   }
 
   const sendEmail = async () => {
-    await api.post(
+    await Api.post(
       "/youtube/api/auth/email",
       {headers: {"Content-Type": "application/json"}},
     );
@@ -35,11 +36,22 @@ export default function Short() {
   }
 
   const receiveEmailCode = async () => {
-    await api.get(
+    await Api.get(
       `/youtube/api/auth/email?code=${emailCode}`,
     );
     alert("인증이 완료 되었습니다.");
   }
+
+  useEffect(() => {
+    Api.get('/youtube/api/channel/1')
+      .catch(() => {
+        if(APP_MODE === "development") {
+          window.location.href = "http://localhost:8888/youtube/api/signout";
+        } else {
+          window.location.href = "https://youtube.devmaker.kr/api/youtube/api/signout";
+        }
+      });
+  }, []);
 
   return (
     <Body>
