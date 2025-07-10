@@ -2,9 +2,8 @@
 
 import Body from "@/component/common/body";
 import {Button, Form, InputGroup} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Api from "@/component/api";
-import { APP_MODE } from '@/config.json';
 
 export default function Short() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -41,17 +40,6 @@ export default function Short() {
     );
     alert("인증이 완료 되었습니다.");
   }
-
-  useEffect(() => {
-    Api.get('/youtube/api/channel/1')
-      .catch(() => {
-        if(APP_MODE === "development") {
-          window.location.href = "http://localhost:8888/youtube/api/signout";
-        } else {
-          window.location.href = "https://youtube.devmaker.kr/api/youtube/api/signout";
-        }
-      });
-  }, []);
 
   return (
     <Body>

@@ -5,7 +5,6 @@ import VideoMain from "@/component/videoMain";
 import Image from "next/image";
 import Api from "@/component/api";
 import {useRouter} from "next/navigation";
-import { APP_MODE } from '@/config.json';
 
 export default function Home() {
   const [res, setRes] = useState({tags: [], videos: [], shorts: []});
@@ -15,13 +14,6 @@ export default function Home() {
   useEffect(() => {
     Api.get('/youtube/api/videos')
       .then((data) => setRes(data.data))
-      .catch(() => {
-        if(APP_MODE === "development") {
-          window.location.href = "http://localhost:8888/youtube/api/signout";
-        } else {
-          window.location.href = "https://youtube.devmaker.kr/api/youtube/api/signout";
-        }
-      })
   }, []);
 
   return (

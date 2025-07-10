@@ -6,7 +6,6 @@ import Api from "@/component/api";
 import Body from "@/component/common/body";
 import ShortsMain from "@/component/ShortsMain";
 import ChildShortsComment from "@/component/shorts/childShortsComment";
-import { APP_MODE } from '@/config.json';
 
 export default function Short() {
   const router = useRouter();
@@ -81,13 +80,6 @@ export default function Short() {
         setCurrentShorts(data.data.current_shorts);
         setNextShorts(data.data.next_shorts);
         setLikeDislike({like: data.data.liked, dislike: data.data.disliked});
-      })
-      .catch(() => {
-        if(APP_MODE === "development") {
-          window.location.href = "http://localhost:8888/youtube/api/signout";
-        } else {
-          window.location.href = "https://youtube.devmaker.kr/api/youtube/api/signout";
-        }
       });
   }, []);
 
