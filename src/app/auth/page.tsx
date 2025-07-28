@@ -21,7 +21,7 @@ export default function Short() {
 
   const receivePhoneCode = async () => {
     await Api.get(
-      `/youtube/Api/auth/sms?code=${phoneCode}`,
+      `/youtube/api/auth/sms?code=${phoneCode}`,
     );
     alert("인증이 완료 되었습니다.");
   }
@@ -52,7 +52,7 @@ export default function Short() {
           </div>
           <InputGroup className="mb-1">
             <Form.Control
-              placeholder="전화번호"
+              placeholder="ex) +821012341234"
               aria-label="전화번호"
               aria-describedby="basic-addon1"
               onChange={(e) => setPhoneNumber(e.target.value)}
